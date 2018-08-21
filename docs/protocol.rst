@@ -64,7 +64,7 @@
 
       sudo vi /etc/ffsecurity/config.py
  
-      EXTERNAL_ADDRESS="https://192.168.104.204"
+      EXTERNAL_ADDRESS="https://my-example-domain.com"
 
 
 
