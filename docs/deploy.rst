@@ -4,7 +4,7 @@
 Пошаговое развертывание
 ===============================================
 
-Данный раздел содержит сведения о пошаговом развертывании компонентов FindFace Security на одиночном сервере. Выполните приведенные ниже инструкции, придерживаясь заданного порядка.
+Данный раздел содержит сведения о пошаговом развертывании компонентов FindFace Security. Выполните приведенные ниже инструкции, придерживаясь заданного порядка.
 
 .. include:: _inclusions/prepare_install.rst
 
@@ -18,12 +18,12 @@
 Установка необходимого стороннего ПО
 -------------------------------------------
 
-Для работы FindFace Security необходима система управления базами данных :program:`PostgreSQL` и сетевое хранилище :program:`Redis`. Установите их из репозитория Ubuntu:
+Для работы FindFace Security необходима система управления базами данных :program:`PostgreSQL`, сетевое хранилище :program:`Redis` и распределенное хранилище ключей :program:`ETCD`. Установите их из репозитория Ubuntu:
 
 .. code::
 
    sudo apt-get update
-   sudo apt install -y postgresql-server-dev-9.5 redis-server
+   sudo apt install -y postgresql-server-dev-9.5 redis-server etcd
 
 
 Подготовка deb-пакетов к установке
@@ -73,6 +73,10 @@
        При необходимости укажите в параметре ``license-dir`` другую папку для хранения файла лицензии. По умолчанию файл лицензии хранится в папке ``/ntech/license``::
 
          license-dir = /ntech/license
+
+         При необходимости раскомментируйте строку ``proxy`` и укажите IP-адрес прокси-сервера::
+
+         proxy = http://192.168.1.1:12345
 
        По умолчанию доступ в веб-интерфейс NTLS возможен с любого удаленного сервера в пределах сети (``ui = 0.0.0.0:3185``). Для того чтобы обеспечить доступ к веб-интерфейсу NTLS только с определенного IP-адреса, отредактируйте параметр ui::
 
@@ -140,7 +144,7 @@
 
       sudo apt install -y ffsecurity-ui
 
-#. Откройте файл конфигурации ``/etc/ffsecurity/config.py``. В параметре ``EXTERNAL_ADDRESS`` укажите актуальный внешний IP-адрес или URL сервера установки, по которому будет доступен веб-интерфейс. Придумайте токен для авторизации видеодетектора лиц в сервисе ``ffsecurity`` и укажите его в параметре ``VIDEO_DETECTOR_TOKEN`` (данный токен также нужно будет продублировать в :ref:`настройках видеодетектора <identification>`). 
+#. Откройте файл конфигурации ``/etc/ffsecurity/config.py``. В параметре ``EXTERNAL_ADDRESS`` укажите актуальный внешний IP-адрес или URL сервера установки, по которому будет доступен веб-интерфейс. Если компонент ``videomanager-api`` будет установлен на удаленном сервере, укажите его IP-адрес в параметре ``VIDEO_MANAGER_ADDRESS`` (установка компонента описана в разделе см. :ref:`identification`). 
 
    .. tip::
       Если необходимо обеспечить безопасность данных, включите :ref:`SSL-шифрование <https>`. 
@@ -157,32 +161,44 @@
 
       sudo vi /etc/ffsecurity/config.py
  
-      MEDIA_ROOT="/var/lib/ffsecurity/uploads"
-      STATIC_ROOT="/var/lib/ffsecurity/static"
+      MEDIA_ROOT = "/home/pro/proj/universe/tigre_prototype/media/"
+      STATIC_ROOT = "/home/pro/proj/universe/tigre_prototype/static/"
+      STATICFILES_DIRS = [
+          # "/home/pro/proj/universe/tigre_prototype/static-js",
+          "/home/pro/proj/universe/ffui/temp/ffsecurity-ui",
+          "/home/pro/proj/universe/ffui/temp/ffsecurity-ui/ui-static",
+      ]
+      STATIC_URL = "/ui-static/"
 
-      EXTERNAL_ADDRESS="192.168.104.204"
+      EXTERNAL_ADDRESS = "http://172.20.77.84:8000"
 
-      DEBUG = False
+      DEBUG = True
 
-      LANGUAGE_CODE = 'ru-ru'
+      LANGUAGE_CODE = 'en-us'
 
       TIME_ZONE = 'UTC'
 
       DATABASES = {
-         'default': {
-             'ENGINE': 'django.db.backends.postgresql',
-             'NAME': 'ffsecurity',
-         }
+          'default': {
+              'ENGINE': 'django.db.backends.postgresql',
+              'NAME': 'ffsecurity',
+              'USER': 'ffsecurity',
+              'PASSWORD': 'ffsecurity',
+              'HOST': '127.0.0.1',
+              'PORT': '5432',
+          }
       }
+
+      # use pwgen -sncy 50 1|tr "'" "." to generate your own unique key
+      SECRET_KEY = 'changeme'
 
       FFSECURITY = {
-         'VIDEO_DETECTOR_TOKEN': 'Ghj545dfd',
-         'CONFIDENCE_THRESHOLD': 0.75,
-         'MINIMUM_DOSSIER_QUALITY': -0.1,
-         'IGNORE_UNMATCHED': False,
-         'EXTRACTION_API': 'http://127.0.0.1:18666/',
+          'CONFIDENCE_THRESHOLD': 0.75,
+          'MINIMUM_DOSSIER_QUALITY': -0.1,
+          'IGNORE_UNMATCHED': False,
+          'VIDEO_MANAGER_ADDRESS':'http://127.0.0.1:18810',
+          'EXTRACTION_API': 'http://127.0.0.1:18666/',
       }
-
     
    .. tip::
       При необходимости также отредактируйте файл конфигурации ``/etc/nginx/sites-available/ffsecurity-nginx.conf``.
@@ -200,6 +216,8 @@
 #. Перенесите схему базы данных из FindFace Security в :program:`PostgreSQL`, создайте группы пользователей с :ref:`предустановленными правами <users>` и  первого пользователя с правами администратора (т. н. Супер Администратора).
 
    .. important::
+
+
       Отличие назначаемого администратора от Супер Администратора в том, что последний не может лишиться прав администратора даже при смене роли.       
 
    .. code::
@@ -227,51 +245,64 @@
 Установка модуля биометрической видео-идентификации
 ----------------------------------------------------------
 
-Установка модуля биометрической видео-идентификации (компонентов ``fkvideo_detector`` и ``extraction-api``) выполняется следующим образом:
+Установка модуля биометрической видео-идентификации (компонентов ``videomanager-api``, ``video-worker`` и ``extraction-api``) выполняется следующим образом:
 
-#. Установите видеодетектор лиц.
+#. Добавьте сервис ETCD в автозагрузку Ubuntu и запустите его.
 
    .. code::
 
-      sudo apt install -y fkvideo-detector 
+      sudo systemctl enable etcd.service && sudo systemctl start etcd.service
 
-#. Откройте файл конфигурации видеодетектора и отредактируйте в нем следующие настройки:
+#. Установите компоненты ``videomanager-api``, ``video-worker`` и ``extraction-api``.
 
-   .. note:: 
-      Обратите внимание, что в параметре ``api-token`` нужно указать значение ``VIDEO_DETECTOR_TOKEN`` из ``/etc/ffsecurity/config.py`` (см. :ref:`basic-deployment`). 
+   .. code::
+     
+      sudo apt install -y findface-videomanager-api.service video-worker.service findface-extraction-api.service
 
-   .. code:: 
+#. Откройте для редактирования файл конфигурации ``/etc/findface-videomanager-api.conf``. В параметре ``router_url`` укажите IP-адрес и порт компонента ``ffsecurity``, в который компонент ``video-worker`` будет отправлять обнаруженные лица.
 
-      sudo vi /etc/fkvideo.ini
+   .. code::
       
-      api-url=127.0.0.1:8002
+      sudo vi /etc/findface-videomanager-api.conf
+ 
+      router_url: http://127.0.0.1:18820/v0/frame
 
-      api-token=<'VIDEO_DETECTOR_TOKEN'>
-
-      detector-name=detector1
-
-      request-url=/video-detector/frame/
-
-      camera-url=/video-detector/cameras/
-
-      realtime=0
-
-   .. important::
-      По умолчанию видеодетектор подбирает лучшее изображение лица в режиме реального времени (``realtime=1``). В этом режиме видеодетектор начинает отправлять в ``ffsecurity`` изображения лица сразу после его появления в поле зрения видеокамеры. Для более эффективного подбора лучшего изображения лица рекомендуется установить буферный режим (``realtime=0``). В буферном режиме видеодетектор использует меньший объем дискового пространства, поскольку для каждого лица отправляет в ``ffsecurity`` только одно изображение, но наивысшего качества.
-
-#. Добавьте сервис ``fkvideo_detector`` в автозагрузку Ubuntu и запустите его. Убедитесь, что сервис активен. 
+#. В параметре ``ntls -> url`` укажите IP-адрес локального сервера лицензирования NTLS, если он удаленный.
 
    .. code::
 
-      sudo systemctl enable fkvideo_detector@fkvideo && sudo systemctl start fkvideo_detector@fkvideo
+      ntls:
+          url: http://127.0.0.1:3185/
 
-      sudo systemctl status fkvideo_detector@fkvideo
+#. Откройте для редактирования файл конфигурации ``/etc/video-worker.ini``.
+
+   .. code::   
+
+      sudo vi /etc/video-worker.ini
+
+#. В параметре ``ntls-addr`` укажите IP-адрес локального сервера лицензирования NTLS, если он удаленный.
+
+   .. code::
+
+      ntls-addr=127.0.0.1:3133
+
+#. В параметре ``mgr-static`` укажите IP-адрес сервера с установленным компонентом ``findface-videomanager-api``, у которого компонент ``video-worker`` будет запрашивать настройки и список видеопотоков.
+
+   .. code::
+
+      mgr-static=127.0.0.1:18811
+
+#. В параметре ``capacity`` укажите максимальное количество видеопотоков, обрабатываемых компонентом ``video-worker``. 
+
+   .. code::
+
+      capacity=10
 
 #. Установите компонент ``extraction-api``.
 
    .. code::
 
-      sudo apt install -y findface-extraction-api
+      sudo apt install -y findface-extraction-api.service
 
 #. В файле конфигурации ``extraction-api`` включите опцию ``quality_estimator`` для оценки качества лица.
 
@@ -296,13 +327,15 @@
         age: ""
         emotions: ""
 
-#. Добавьте сервис ``extraction-api`` в автозагрузку Ubuntu и запустите его. Убедитесь, что сервис активен.
+#. Добавьте сервисы ``videomanager-api``, ``video-worker``, ``extraction-api`` в автозагрузку Ubuntu и запустите их.
 
    .. code::
 
-      sudo systemctl enable findface-extraction-api && sudo systemctl start findface-extraction-api
+      sudo systemctl enable findface-videomanager-api.service && sudo systemctl start findface-videomanager-api.service
 
-      sudo systemctl status findface-extraction-api
+      sudo systemctl enable video-worker.service && sudo systemctl start video-worker.service
+
+      sudo systemctl enable findface-extraction-api.service && sudo systemctl start findface-extraction-api.service
       
 
 
