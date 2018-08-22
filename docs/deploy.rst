@@ -161,18 +161,12 @@
 
       sudo vi /etc/ffsecurity/config.py
  
-      MEDIA_ROOT = "/home/pro/proj/universe/tigre_prototype/media/"
-      STATIC_ROOT = "/home/pro/proj/universe/tigre_prototype/static/"
-      STATICFILES_DIRS = [
-          # "/home/pro/proj/universe/tigre_prototype/static-js",
-          "/home/pro/proj/universe/ffui/temp/ffsecurity-ui",
-          "/home/pro/proj/universe/ffui/temp/ffsecurity-ui/ui-static",
-      ]
-      STATIC_URL = "/ui-static/"
+      MEDIA_ROOT="/var/lib/ffsecurity/uploads"
+      STATIC_ROOT="/var/lib/ffsecurity/static"
 
-      EXTERNAL_ADDRESS = "http://172.20.77.84:8000"
+      EXTERNAL_ADDRESS="http://172.20.77.26:8000"
 
-      DEBUG = True
+      DEBUG = False
 
       LANGUAGE_CODE = 'en-us'
 
@@ -182,10 +176,6 @@
           'default': {
               'ENGINE': 'django.db.backends.postgresql',
               'NAME': 'ffsecurity',
-              'USER': 'ffsecurity',
-              'PASSWORD': 'ffsecurity',
-              'HOST': '127.0.0.1',
-              'PORT': '5432',
           }
       }
 
@@ -203,6 +193,7 @@
    .. tip::
       При необходимости также отредактируйте файл конфигурации ``/etc/nginx/sites-available/ffsecurity-nginx.conf``.
  
+#. Используя команду ``pwgen -sncy 50 1|tr "'" "." ``, сгенерируйте ключ подписи для шифрования сессии (используется :program:`Django`) и задайте его в параметре ``SECRET_KEY``.
 #. Отключите сервер nginx, используемый по умолчанию, и добавьте в список включенных серверов сервер ``ffsecurity``. Перезапустите nginx.
 
    .. code::
@@ -257,15 +248,15 @@
 
    .. code::
      
-      sudo apt install -y findface-videomanager-api.service video-worker.service findface-extraction-api.service
+      sudo apt install -y findface-videomanager-api fkvideo-worker findface-extraction-api
 
-#. Откройте для редактирования файл конфигурации ``/etc/findface-videomanager-api.conf``. В параметре ``router_url`` укажите IP-адрес и порт компонента ``ffsecurity``, в который компонент ``video-worker`` будет отправлять обнаруженные лица.
+#. Откройте для редактирования файл конфигурации ``/etc/findface-videomanager-api.conf``. В параметре ``router_url`` замените строку перед ``v0/frame``, указав IP-адрес и порт компонента ``ffsecurity``, в который компонент ``video-worker`` будет отправлять обнаруженные лица (IP-адрес и порт задаются в параметре ``EXTERNAL_ADDRESS`` файла ``/etc/ffsecurity/config.py``).
 
    .. code::
       
       sudo vi /etc/findface-videomanager-api.conf
  
-      router_url: http://127.0.0.1:18820/v0/frame
+      router_url: http://127.0.0.1:8000/v0/frame
 
 #. В параметре ``ntls -> url`` укажите IP-адрес локального сервера лицензирования NTLS, если он удаленный.
 
@@ -302,7 +293,7 @@
 
    .. code::
 
-      sudo apt install -y findface-extraction-api.service
+      sudo apt install -y findface-extraction-api
 
 #. В файле конфигурации ``extraction-api`` включите опцию ``quality_estimator`` для оценки качества лица.
 
@@ -315,7 +306,7 @@
     
       quality_estimator: true
 
-#. В файле конфигурации ``extraction-api`` выключите поиск моделей для распознавания пола, возраста и эмоций, передав пустые значения в параметры ``gender``, ``age`` и ``emotions``:
+#. В файле конфигурации ``extraction-api`` выключите поиск моделей для распознавания пола, возраста, эмоций и страны, передав пустые значения в параметры ``gender``, ``age``, ``emotions`` и ``countries47``:
 
    .. warning::
       Не удаляйте сами параметры, поскольку в этом случае будет выполняться поиск моделей по умолчанию. 
@@ -323,9 +314,48 @@
    .. code::
 
       models:
-        gender: ""
-        age: ""
-        emotions: ""
+        gender: ''
+        age: ''
+        emotions: ''
+        countries47: ''
+
+   В результате файл конфигурации ``extraction-api`` должен выглядеть примерно следующим образом:
+
+   .. code::
+
+      listen: :18666
+      dlib:
+        model: /usr/share/findface-data/normalizer.dat
+        options:
+          adjust_threshold: 0
+          upsample_times: 1
+      nnd:
+        model: /usr/share/nnd/nnd.dat
+        quality_estimator: false
+        quality_estimator_model: /usr/share/nnd/quality_estimator_v2.dat
+        options:
+          min_face_size: 30
+          max_face_size: .inf
+          scale_factor: 0.79
+          p_net_thresh: 0.5
+          r_net_thresh: 0.5
+          o_net_thresh: 0.9
+          p_net_max_results: 0
+      models:
+        root: /usr/share/findface-data/models
+        facen: elderberry_576
+        gender: ''
+        age: ''
+        emotions: ''
+        countries47: ''
+        model_instances: 1
+      license_ntls_server: 127.0.0.1:3133
+      fetch:
+        enabled: true
+        size_limit: 10485760
+      max_dimension: 6000
+      allow_cors: false
+      ticker_interval: 5000
 
 #. Добавьте сервисы ``videomanager-api``, ``video-worker``, ``extraction-api`` в автозагрузку Ubuntu и запустите их.
 
