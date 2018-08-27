@@ -1,0 +1,79 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2018, NtechLab
+# This file is distributed under the same license as the FindFace Security
+# package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2018.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: FindFace Security 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2018-08-24 17:48+0700\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=utf-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: Babel 2.5.3\n"
+
+#: ../docs/videoworker_installer.rst:4
+msgid "Дополнительное развертывание ``video-worker`` на удаленных серверах"
+msgstr ""
+
+#: ../docs/videoworker_installer.rst:6
+msgid ""
+"В случае если на удаленном сервере нужно установить только компонент "
+"``video-worker``,  можно использовать мини-инсталлятор."
+msgstr ""
+
+#: ../docs/videoworker_installer.rst:8
+msgid ""
+"Для развертывания ``video-worker`` из мини-инсталлятора выполните "
+"следующие действия:"
+msgstr ""
+
+#: ../docs/videoworker_installer.rst:10
+msgid "Загрузите файл инсталлятора ``<fkvideo-worker-xxx>.run``."
+msgstr ""
+
+#: ../docs/videoworker_installer.rst:11
+msgid ""
+"Поместите файл ``.run`` в любой каталог на сервере установки (например, "
+"``/home/username``)."
+msgstr ""
+
+#: ../docs/videoworker_installer.rst:12
+msgid "Из данного каталога сделайте файл ``.run`` исполняемым."
+msgstr ""
+
+#: ../docs/videoworker_installer.rst:18
+msgid ""
+"Запустите файл ``.run``. Компонент ``video-worker`` будет автоматически "
+"установлен."
+msgstr ""
+
+#: ../docs/videoworker_installer.rst:24
+msgid "Откройте для редактирования файл конфигурации ``/etc/video-worker.ini``."
+msgstr ""
+
+#: ../docs/videoworker_installer.rst:30
+msgid ""
+"В параметре ``ntls-addr`` укажите IP-адрес локального сервера "
+"лицензирования NTLS."
+msgstr ""
+
+#: ../docs/videoworker_installer.rst:36
+msgid ""
+"В параметре ``mgr-static`` укажите IP-адрес сервера с установленным "
+"компонентом ``findface-videomanager-api``, у которого компонент ``video-"
+"worker`` будет запрашивать настройки и список видеопотоков."
+msgstr ""
+
+#: ../docs/videoworker_installer.rst:42
+msgid ""
+"В параметре ``capacity`` укажите максимальное количество видеопотоков, "
+"обрабатываемых компонентом ``video-worker``."
+msgstr ""
+
