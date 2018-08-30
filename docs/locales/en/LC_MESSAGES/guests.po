@@ -8,35 +8,39 @@ msgid ""
 msgstr ""
 "Project-Id-Version: FindFace Security 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2018-08-24 17:48+0700\n"
-"PO-Revision-Date: 2018-04-11 19:02+0700\n"
+"POT-Creation-Date: 2018-08-30 13:24+0700\n"
+"PO-Revision-Date: 2018-08-30 13:27+0700\n"
 "Last-Translator: \n"
 "Language: en\n"
 "Language-Team: \n"
-"Plural-Forms: nplurals=2; plural=(n != 1)\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: Babel 2.5.3\n"
+"X-Generator: Poedit 2.1.1\n"
 
 #: ../docs/guests.rst:5
-#, fuzzy
-msgid "Управление базой данных персон"
-msgstr "Visitor Database"
+msgid "Управление базой данных досье"
+msgstr "Dossier Database"
 
 #: ../docs/guests.rst:7
 msgid ""
-"FindFace Security позволяет создать досье на персону. Досье содержит одну"
-" или несколько фотографий персоны и классифицируется по принадлежности к "
-"тому или иному списку наблюдения, например, к черному или белому в самом "
-"простом случае. Вы можете создать несколько списков наблюдения, например,"
-" в зависимости от уровня опасности или, наоборот, статуса персоны."
+"FindFace Security позволяет создать досье на персону. Досье содержит одну или "
+"несколько фотографий персоны и классифицируется по принадлежности к тому или "
+"иному списку наблюдения, например, к черному или белому в самом простом случае. "
+"Вы можете создать несколько списков наблюдения, например, в зависимости от "
+"уровня опасности или, наоборот, статуса персоны."
 msgstr ""
+"FindFace Security allows you to create a dossier on a person. A dossier has to "
+"contain one or several photos of a person and belong to a certain "
+"classification list (watch list), black or white in the simplest case. You can "
+"create several watch lists, subject to a visitor status or hazard level."
 
 #: ../docs/guests.rst:10
 msgid ""
-"Для автоматического создания большого количества досье используйте "
-"функционал пакетной загрузки фотографий."
+"Для автоматического создания большого количества досье используйте функционал "
+"пакетной загрузки фотографий."
 msgstr "To create dossiers in bulk, use the batch photo upload functionality."
 
 #: ../docs/guests.rst:13
@@ -68,15 +72,14 @@ msgid "Нажмите на кнопку :guilabel:`Создать`."
 msgstr "Click :guilabel:`Create`."
 
 #: ../docs/guests.rst:37
-#, fuzzy
 msgid ""
-"В палитре :guilabel:`Метка` выберите цвет, который будет использоваться в"
-" событиях распознавания персон из данного списка. Правильно выбранный "
-"цвет повышает быстроту реагирования оператора на событие."
+"В палитре :guilabel:`Метка` выберите цвет, который будет использоваться в "
+"событиях распознавания персон из данного списка. Правильно выбранный цвет "
+"повышает быстроту реагирования оператора на событие."
 msgstr ""
-"From the :guilabel:`Label` palette, select a color which will be shown in"
-" notifications for this list. Keep in mind that the right color makes for"
-" quicker response of security and hospitality managers."
+"From the :guilabel:`Label` palette, select a color which will be shown in "
+"notifications for this list. Keep in mind that the right color makes for "
+"quicker response of security and hospitality managers."
 
 #: ../docs/guests.rst:39
 msgid "|list_ru|"
@@ -88,12 +91,11 @@ msgstr "Specify the list name."
 
 #: ../docs/guests.rst:49
 msgid ""
-"Поставьте флажок :guilabel:`Требовать подтверждение`, если для данного "
-"списка оператор должен в обязательном порядке подтвердить принятие "
-"события."
+"Поставьте флажок :guilabel:`Требовать подтверждение`, если для данного списка "
+"оператор должен в обязательном порядке подтвердить принятие события."
 msgstr ""
-"Check :guilabel:`Require acknowledgment` if it is mandatory that a "
-"manager acknowledge events for the list."
+"Check :guilabel:`Require acknowledgment` if it is mandatory that a manager "
+"acknowledge events for the list."
 
 #: ../docs/guests.rst:50
 msgid "При необходимости включите звук при появлении события для данного списка."
@@ -123,11 +125,10 @@ msgstr "Click on the list name in the table."
 
 #: ../docs/guests.rst:61
 msgid ""
-"Для деактивации снимите флажок :guilabel:`Активный`. Нажмите на кнопку "
-":guilabel:`Сохранить`."
+"Для деактивации снимите флажок :guilabel:`Активный`. Нажмите на кнопку :"
+"guilabel:`Сохранить`."
 msgstr ""
-"To deactivate the list, uncheck :guilabel:`Active`. Click "
-":guilabel:`Save`."
+"To deactivate the list, uncheck :guilabel:`Active`. Click :guilabel:`Save`."
 
 #: ../docs/guests.rst:62
 msgid "Для удаления нажмите на кнопку :guilabel:`Удалить`."
@@ -139,20 +140,19 @@ msgstr "Filter Dossiers by List"
 
 #: ../docs/guests.rst:67
 msgid ""
-"Все созданные в FindFace Security досье отображаются на вкладке "
-":guilabel:`Досье`. Используйте фильтр :guilabel:`Списки наблюдения`, "
-"чтобы отфильтровать досье по спискам."
+"Все созданные в FindFace Security досье отображаются на вкладке :guilabel:"
+"`Досье`. Используйте фильтр :guilabel:`Списки наблюдения`, чтобы отфильтровать "
+"досье по спискам."
 msgstr ""
-"You can find all dossiers created in FindFace Security on the "
-":guilabel:`Dossiers` tab. Use the :guilabel:`Watch lists` filter to "
-"filter dossiers by list."
+"You can find all dossiers created in FindFace Security on the :guilabel:"
+"`Dossiers` tab. Use the :guilabel:`Watch lists` filter to filter dossiers by "
+"list."
 
 #: ../docs/guests.rst:73
 msgid "Создание досье вручную"
 msgstr "Create Dossier Manually"
 
 #: ../docs/guests.rst:75
-#, fuzzy
 msgid "Для создания досье выполните следующие действия:"
 msgstr "To create a dossier manually, do the following:"
 
@@ -165,23 +165,21 @@ msgid "|create_dossier_ru|"
 msgstr "|create_dossier_en|"
 
 #: ../docs/guests.rst:88
-#, fuzzy
 msgid ""
 "Добавьте одну или несколько фотографий и введите имя человека. При "
 "необходимости добавьте комментарий."
 msgstr ""
-"Attach a photo and specify the name of a visitor. If necessary, add a "
-"comment."
+"Attach one or several photos and specify the name of a person. If necessary, "
+"add a comment."
 
 #: ../docs/guests.rst:91
-#, fuzzy
 msgid ""
-"Лицо на фотографии должно быть надлежащего качества, т. е. в близком к "
-"анфас положении. При несоответствии фотографии данному требованию будет "
-"выведено сообщение с описанием ошибки."
+"Лицо на фотографии должно быть надлежащего качества, т. е. в близком к анфас "
+"положении. При несоответствии фотографии данному требованию будет выведено "
+"сообщение с описанием ошибки."
 msgstr ""
-"Photos that do not meet the requirements will be rejected with a detailed"
-" error description."
+"A face must be of high quality, i.e. close to a frontal position. Photos that "
+"do not meet the requirement will be rejected with a detailed error description."
 
 #: ../docs/guests.rst:93
 msgid "|dossier_ru|"
@@ -189,18 +187,20 @@ msgstr "|dossier_en|"
 
 #: ../docs/guests.rst:101
 msgid ""
-"Из раскрывающегося списка :guilabel:`Списки наблюдения` выберите список "
-"(или несколько списков, по очереди), в который следует добавить досье."
+"Из раскрывающегося списка :guilabel:`Списки наблюдения` выберите список (или "
+"несколько списков, по очереди), в который следует добавить досье."
 msgstr ""
-"From the :guilabel:`Watch lists` drop-down menu, select a classification "
-"list for the dossier."
+"From the :guilabel:`Watch lists` drop-down menu, select a classification list "
+"for the dossier."
 
 #: ../docs/guests.rst:102
 msgid ""
-"Убедитесь, что поставлен флажок :guilabel:`Активное`. Если досье "
-"неактивно, оно не будет использоваться для :ref:`идентификации лица "
-"<events>` в режиме реального времени."
+"Убедитесь, что поставлен флажок :guilabel:`Активное`. Если досье неактивно, оно "
+"не будет использоваться для :ref:`идентификации лица <events>` в режиме "
+"реального времени."
 msgstr ""
+"Check :guilabel:`Active`. If a dossier is inactive, it is excluded from real "
+"time :ref:`face identification <events>`."
 
 #: ../docs/guests.rst:108
 msgid "Пакетная загрузка фотографий"
@@ -208,8 +208,8 @@ msgstr "Batch Photo Upload"
 
 #: ../docs/guests.rst:110
 msgid ""
-"Для автоматического создания большого количества досье используйте "
-"функционал пакетной загрузки фотографий. Выполните следующие действия:"
+"Для автоматического создания большого количества досье используйте функционал "
+"пакетной загрузки фотографий. Выполните следующие действия:"
 msgstr "To create dossiers in bulk, use the batch photo upload. Do the following:"
 
 #: ../docs/guests.rst:112
@@ -222,45 +222,46 @@ msgstr "|batch_upload_en|"
 
 #: ../docs/guests.rst:121
 msgid ""
-"Выберите фотографии для загрузки пофайлово или укажите папку с "
-"фотографиями."
+"Выберите фотографии для загрузки пофайлово или укажите папку с фотографиями."
 msgstr "Select multiple image files, or a folder."
 
 #: ../docs/guests.rst:122
 msgid ""
 "Имена файлов с фотографиями можно использовать как основу для имен и/или "
-"комментариев в создаваемых досье. Выберите нужный вариант(ы). Затем "
-"настройте правило формирования имени и/или комментария, добавив "
-"пользовательский префикс и/или постфикс к имени файла."
+"комментариев в создаваемых досье. Выберите нужный вариант(ы). Затем настройте "
+"правило формирования имени и/или комментария, добавив пользовательский префикс "
+"и/или постфикс к имени файла."
 msgstr ""
-"You can use image file names as a basis for names and/or comments in "
-"dossiers to be created. Select the necessary option(s). Then configure "
-"the automatic name/comment generation rule by appending a custom prefix "
-"and/or postfix to the file name."
+"You can use image file names as a basis for names and/or comments in dossiers "
+"to be created. Select the necessary option(s). Then configure the automatic "
+"name/comment generation rule by appending a custom prefix and/or postfix to the "
+"file name."
 
 #: ../docs/guests.rst:125
 msgid ""
-"Во избежание слияние 3-х слов в одно, используйте символ подчеркивания "
-"или пробел в префиксе и постфиксе."
+"Во избежание слияние 3-х слов в одно, используйте символ подчеркивания или "
+"пробел в префиксе и постфиксе."
 msgstr ""
-"To avoid merging the 3 words into one, use underscore or another symbol "
-"in the prefix and postfix."
+"To avoid merging the 3 words into one, use underscore or another symbol in the "
+"prefix and postfix."
 
 #: ../docs/guests.rst:127
 msgid ""
-"Из раскрывающегося списка :guilabel:`Списки наблюдения` выберите список "
-"(или несколько списков, по очереди), в который следует добавить "
-"создаваемые досье."
+"Из раскрывающегося списка :guilabel:`Списки наблюдения` выберите список (или "
+"несколько списков, по очереди), в который следует добавить создаваемые досье."
 msgstr ""
-"From the :guilabel:`Watch lists` drop-down menu, select a classification "
-"list for the dossiers."
+"From the :guilabel:`Watch lists` drop-down menu, select a classification list "
+"for the dossiers."
 
 #: ../docs/guests.rst:128
 msgid ""
 "В параметре :guilabel:`Параллельная загрузка` задайте количество потоков "
-"загрузки фотографий. Чем больше потоков, тем быстрее будет завершена "
-"загрузка, однако также потребуется и большее количество ресурсов."
+"загрузки фотографий. Чем больше потоков, тем быстрее будет завершена загрузка, "
+"однако также потребуется и большее количество ресурсов."
 msgstr ""
+"Use the :guilabel:`Parallel load` option to specify the number of photo upload "
+"streams. The more streams you use, the faster the batch photo upload is "
+"completed and the more resources you need."
 
 #: ../docs/guests.rst:129
 msgid ""
@@ -268,6 +269,9 @@ msgid ""
 "поступить система при наличии нескольких лиц на фотографии: отклонить "
 "фотографию или загрузить самое большое лицо."
 msgstr ""
+"From the :guilabel:`MF selector` drop-down menu, select the system behavior "
+"upon detecting several faces in a photo: reject the photo, or upload the "
+"biggest face."
 
 #: ../docs/guests.rst:130
 msgid "Для запуска пакетного создания досье нажмите на кнопку :guilabel:`Старт`."
@@ -275,35 +279,32 @@ msgstr "Click :guilabel:`Start` to launch the photo upload."
 
 #: ../docs/guests.rst:133
 msgid ""
-"Для просмотра лога пакетной загрузки нажмите на кнопку :guilabel:`Лог`. "
-"Затем при необходимости можно скачать лог в формате ``.csv``."
+"Для просмотра лога пакетной загрузки нажмите на кнопку :guilabel:`Лог`. Затем "
+"при необходимости можно скачать лог в формате ``.csv``."
 msgstr ""
+"To view the batch photo upload log, click :guilabel:`Log`. You can then "
+"download the log in the ``.csv`` format if needed."
+
+#: ../docs/guests.rst:135
+msgid "|batch_upload_log_ru|"
+msgstr "|batch_upload_log_en|"
 
 #~ msgid "Списки досье"
 #~ msgstr "Dossier Lists"
 
 #~ msgid ""
-#~ "На каждого нежелательного посетителя и "
-#~ "VIP-гостя в FindFace Security создается "
-#~ "досье, содержащее одну или несколько "
-#~ "фотографий. Досье классифицируется по "
-#~ "принадлежности к тому или иному списку"
-#~ " наблюдения, например, к черному или "
-#~ "белому в самом простом случае. Вы "
-#~ "можете создать несколько списков наблюдения,"
-#~ " например, в зависимости от уровня "
-#~ "опасности или, наоборот, статуса посетителя."
+#~ "На каждого нежелательного посетителя и VIP-гостя в FindFace Security "
+#~ "создается досье, содержащее одну или несколько фотографий. Досье "
+#~ "классифицируется по принадлежности к тому или иному списку наблюдения, "
+#~ "например, к черному или белому в самом простом случае. Вы можете создать "
+#~ "несколько списков наблюдения, например, в зависимости от уровня опасности "
+#~ "или, наоборот, статуса посетителя."
 #~ msgstr ""
-#~ "The visitor database contains dossiers "
-#~ "on the unwanted visitors and VIP "
-#~ "guests. A dossier has to contain "
-#~ "one or several photos of a visitor"
-#~ " and belong to a certain "
-#~ "classification list (watch list), black "
-#~ "or white in the simplest case. You"
-#~ " can create several watch lists, "
-#~ "subject to a visitor status or "
-#~ "hazard level."
+#~ "The visitor database contains dossiers on the unwanted visitors and VIP "
+#~ "guests. A dossier has to contain one or several photos of a visitor and "
+#~ "belong to a certain classification list (watch list), black or white in the "
+#~ "simplest case. You can create several watch lists, subject to a visitor "
+#~ "status or hazard level."
 
 #~ msgid "Фотография должна отвечать следующим требованиям:"
 #~ msgstr "A photo must meet the following requirements:"
@@ -312,7 +313,5 @@ msgstr ""
 #~ msgstr "It must contain only one face."
 
 #~ msgid ""
-#~ "Лицо должно быть надлежащего качества, "
-#~ "т. е. в близком к анфас положении."
+#~ "Лицо должно быть надлежащего качества, т. е. в близком к анфас положении."
 #~ msgstr "A face must be of high quality, i.e. close to a frontal position."
-
