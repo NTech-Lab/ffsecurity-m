@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: FindFace Security 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-29 12:51+0700\n"
-"PO-Revision-Date: 2018-08-29 13:33+0700\n"
+"PO-Revision-Date: 2018-08-30 16:33+0700\n"
 "Last-Translator: \n"
 "Language: en\n"
 "Language-Team: \n"
@@ -355,8 +355,8 @@ msgid ""
 "количество лиц, обработанных с ошибками."
 msgstr ""
 "For each camera, you will be provided with the following statistics: current "
-"processing session duration/ the number of successfully posted faces/ the "
-"number of faces processed with errors."
+"session duration/ the number of successfully posted faces/ the number of faces "
+"processed with errors."
 
 #: ../docs/camera_management.rst:131
 msgid ""
@@ -376,7 +376,7 @@ msgstr ":guilabel:`Camera group`,"
 
 #: ../docs/camera_management.rst:136
 msgid ":guilabel:`Активная`,"
-msgstr "Check :guilabel:`Active`,"
+msgstr ":guilabel:`Active`,"
 
 #: ../docs/camera_management.rst:137
 msgid ":guilabel:`Статус`."

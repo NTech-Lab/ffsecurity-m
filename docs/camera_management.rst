@@ -120,6 +120,10 @@
      .. |monitor_cameras_ru| image:: /_static/monitor_cameras.png
         :scale: 70%
 
+     .. |monitor_cameras_en| image:: /_static/monitor_cameras_en.png
+        :scale: 70%
+
+
 Статусы камер:
 
 * Зеленый: идет обработка видеопотока с камеры, проблем не обнаружено.

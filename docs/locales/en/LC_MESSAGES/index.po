@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: FindFace Security 1.0\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2018-08-24 17:48+0700\n"
-"PO-Revision-Date: 2018-08-29 19:56+0700\n"
+"PO-Revision-Date: 2018-08-30 15:11+0700\n"
 "Last-Translator: \n"
 "Language: en\n"
 "Language-Team: \n"
@@ -51,9 +51,9 @@ msgid ""
 "и VIP-гостей и оповещает сотрудников служб безопасности и гостеприимства "
 "об их приходе."
 msgstr ""
-"FindFace Security detects and recognizes faces of the unwanted persons "
-"and VIP guests in live video, and notifies security and hospitality "
-"managers about their arrival."
+"FindFace Security detects and identifies faces of the unwanted persons "
+"and VIP guests in video, and notifies security and hospitality managers "
+"about their arrival."
 
 #: ../docs/index.rst:13
 msgid ""
@@ -73,13 +73,13 @@ msgstr "Reputational losses and conflicts"
 
 #: ../docs/index.rst:17
 msgid "повышение качества обслуживания клиентов, в частности VIP-гостей;"
-msgstr "Better catering to the needs of VIP guests."
+msgstr "Better catering to the needs of VIP guests"
 
 #: ../docs/index.rst:18
 msgid ""
 "предотвращение потенциально опасных ситуаций, угрожающих жизни и здоровью "
 "людей."
-msgstr "Prevention of life threatening situations."
+msgstr "Prevention of life threatening situations"
 
 #: ../docs/index.rst:20
 msgid ""
@@ -87,9 +87,8 @@ msgid ""
 "пользователей FindFace Security. Он также будет полезен специалистам, "
 "обслуживающим систему и ее комплекс технических средств."
 msgstr ""
-"This guide is intended for FindFace Security administrators, security and "
-"hospitality managers, as well as for FindFace Security maintenance "
-"engineers."
+"This guide is intended for the FindFace Security administrators, security "
+"and hospitality managers, and maintenance engineers."
 
 #: ../docs/index.rst:23
 msgid ""
